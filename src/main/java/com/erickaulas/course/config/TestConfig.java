@@ -1,8 +1,10 @@
 package com.erickaulas.course.config;
 
+import com.erickaulas.course.entities.Category;
 import com.erickaulas.course.entities.Order;
 import com.erickaulas.course.entities.User;
 import com.erickaulas.course.entities.enums.OrderStatus;
+import com.erickaulas.course.repositories.CategoryRepository;
 import com.erickaulas.course.repositories.OrderRepository;
 import com.erickaulas.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,16 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception{
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
         User u1 = new User(null, "Katia Aparecida Batista", "catia@gmail.com", "991990673", "123456");
         User u2 = new User(null, "Erick Junior Batista Garcia", "erickjuniorbatistagarcia2@gmail.com", "991319882", "123456");
@@ -33,8 +43,11 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u1);
 
+
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
     }
 
 }
+
+
