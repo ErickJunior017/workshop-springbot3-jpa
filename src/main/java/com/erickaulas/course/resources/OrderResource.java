@@ -1,9 +1,7 @@
 package com.erickaulas.course.resources;
 
 import com.erickaulas.course.entities.Order;
-import com.erickaulas.course.entities.User;
 import com.erickaulas.course.services.OrderService;
-import com.erickaulas.course.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
